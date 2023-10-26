@@ -9,13 +9,13 @@ public static class InstallerExtensions
     /// <summary>
     /// Installer services in assembly
     /// </summary>
-    /// <param name="services">IServiceCollection</param>
+    /// <param name="builder">WebApplicationBuilder</param>
     /// CreatedBy: ThiepTT(25/10/2023)
-    public static void InstallerServicesInAssembly(this IServiceCollection services)
+    public static void InstallerServicesInAssembly(this WebApplicationBuilder builder)
     {
         var installer = typeof(Program).Assembly.ExportedTypes.Where(x => typeof(IInstaller).IsAssignableFrom(x) && !x.IsInterface
             && !x.IsAbstract).Select(Activator.CreateInstance).Cast<IInstaller>().ToList();
 
-        installer.ForEach(installer => installer.InstallServices(services));
+        installer.ForEach(installer => installer.InstallServices(builder));
     }
 }

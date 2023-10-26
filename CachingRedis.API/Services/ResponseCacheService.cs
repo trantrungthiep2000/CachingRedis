@@ -20,13 +20,17 @@ public class ResponseCacheService : IResponseCacheService
         _connectionMultiplexer = connectionMultiplexer;
     }
 
+    /// <summary>
+    /// Get cache response async
+    /// </summary>
+    /// <param name="cacheKey">Cache key</param>
+    /// <returns>string</returns>
+    /// CreatedBy: ThiepTT(25/10/2023)
     public async Task<string> GetCacheResponseAsync(string cacheKey)
     {
         var cacheResponse = await _distributedCache.GetStringAsync(cacheKey);
 
         return string.IsNullOrWhiteSpace(cacheResponse) ? string.Empty : cacheResponse;
-
-
     }
 
     /// <summary>
@@ -35,7 +39,8 @@ public class ResponseCacheService : IResponseCacheService
     /// <param name="cacheKey">Cache key</param>
     /// <param name="response">Response</param>
     /// <param name="timeOut">Time out</param>
-    /// <returns></returns>
+    /// <returns>Task</returns>
+    /// CreatedBy: ThiepTT(25/10/2023)
     public async Task SetCacheResponseAsync(string cacheKey, object response, TimeSpan timeOut)
     {
         if (response is null)

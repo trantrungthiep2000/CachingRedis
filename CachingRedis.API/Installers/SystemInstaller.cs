@@ -9,15 +9,14 @@ public class SystemInstaller : IInstaller
     /// <summary>
     /// Install services
     /// </summary>
-    /// <param name="services">IServiceCollection</param>
+    /// <param name="builder">WebApplicationBuilder</param>
     /// CreatedBy: ThiepTT(25/10/2023)
-    public void InstallServices(IServiceCollection services)
+    public void InstallServices(WebApplicationBuilder builder)
     {
-        services.AddControllers();
+        builder.Services.AddControllers();
 
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        services.AddEndpointsApiExplorer();
+        builder.Services.AddEndpointsApiExplorer();
 
-        services.AddSwaggerGen();
+        builder.Services.AddSwaggerGen();
     }
 }

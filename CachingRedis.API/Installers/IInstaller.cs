@@ -9,7 +9,7 @@ public interface IInstaller
     /// <summary>
     /// Install services
     /// </summary>
-    /// <param name="services">IServiceCollection</param>
+    /// <param name="builder">WebApplicationBuilder</param>
     /// CreatedBy: ThiepTT(25/10/2023)
-    public void InstallServices(IServiceCollection services);
+    public void InstallServices(WebApplicationBuilder builder);
 }
