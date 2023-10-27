@@ -32,6 +32,21 @@ public class UsersController : ControllerBase
     }
 
     /// <summary>
+    /// Get all users entity framework as no tracking
+    /// </summary>
+    /// <returns>IActionResult</returns>
+    /// CreatedBy: ThiepTT(27/10/2023)
+    [HttpGet]
+    [Route($"{ApiRouter.User.GetAllUsersEFAsNoTracking}")]
+    [Cache(3600)]
+    public async Task<IActionResult> GetAllUsersEFAsNoTracking()
+    {
+        var users = await _dataContext.Users.AsNoTracking().ToListAsync();
+
+        return Ok(users);
+    }
+
+    /// <summary>
     /// Get all users entity framework
     /// </summary>
     /// <returns>IActionResult</returns>

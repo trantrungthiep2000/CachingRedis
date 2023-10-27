@@ -15,6 +15,5 @@ public class ServiceInstaller : IInstaller
     /// CreatedBy: ThiepTT(25/10/2023)
     public void InstallServices(WebApplicationBuilder builder)
     {
-        builder.Services.AddScoped<IResponseCacheService, ResponseCacheService>();
     }
 }

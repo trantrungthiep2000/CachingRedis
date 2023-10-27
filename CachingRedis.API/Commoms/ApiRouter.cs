@@ -23,6 +23,11 @@ public static class ApiRouter
     public static class User
     {
         /// <summary>
+        /// Get all users entity framework as no tracking
+        /// </summary>
+        public const string GetAllUsersEFAsNoTracking = "GetAllUsersEFAsNoTracking";
+
+        /// <summary>
         /// Get all users entity framework
         /// </summary>
         public const string GetAllUsersEF = "GetAllUsersEF";
