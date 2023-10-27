@@ -1,4 +1,6 @@
-﻿namespace CachingRedis.API.Installers;
+﻿using CachingRedis.API.Services;
+
+namespace CachingRedis.API.Installers;
 
 /// <summary>
 /// Information of service installer
@@ -13,5 +15,6 @@ public class ServiceInstaller : IInstaller
     /// CreatedBy: ThiepTT(25/10/2023)
     public void InstallServices(WebApplicationBuilder builder)
     {
+        builder.Services.AddScoped<IResponseCacheService, ResponseCacheService>();
     }
 }

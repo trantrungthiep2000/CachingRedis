@@ -23,4 +23,12 @@ public interface IResponseCacheService
     /// <returns>string</returns>
     /// CreatedBy: ThiepTT(25/10/2023)
     public Task<string> GetCacheResponseAsync(string cacheKey);
+
+    /// <summary>
+    /// Remove cache response async
+    /// </summary>
+    /// <param name="pattern">Pattern</param>
+    /// <returns>Task</returns>
+    /// CreatedBy: ThiepTT(27/10/2023)
+    public Task RemoveCacheResponseAsync(string pattern);
 }

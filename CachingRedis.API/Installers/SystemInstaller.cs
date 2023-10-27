@@ -18,5 +18,7 @@ public class SystemInstaller : IInstaller
         builder.Services.AddEndpointsApiExplorer();
 
         builder.Services.AddSwaggerGen();
+
+        builder.Services.AddAutoMapper(typeof(Program));
     }
 }

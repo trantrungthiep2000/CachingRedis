@@ -56,4 +56,41 @@ public class ResponseCacheService : IResponseCacheService
             AbsoluteExpirationRelativeToNow = timeOut
         });
     }
+
+    /// <summary>
+    /// Remove cache response async
+    /// </summary>
+    /// <param name="pattern">Pattern</param>
+    /// <returns>Task</returns>
+    /// CreatedBy: ThiepTt(27/10/2023)
+    public async Task RemoveCacheResponseAsync(string pattern)
+    {
+        await foreach (var key in GetKeyAsync(pattern + "*"))
+        {
+            await _distributedCache.RemoveAsync(key);
+        }
+    }
+
+    /// <summary>
+    /// Get key async 
+    /// </summary>
+    /// <param name="pattern">Pattern</param>
+    /// <returns>string</returns>
+    /// <exception cref="ArgumentException">ArgumentException</exception>
+    /// CreatedBy: ThiepTT(27/10/2023)
+    private async IAsyncEnumerable<string> GetKeyAsync(string pattern)
+    {
+        if (string.IsNullOrWhiteSpace(pattern))
+            throw new ArgumentException("Value cannot be null or whitespace");
+
+        foreach (var endPoint in _connectionMultiplexer.GetEndPoints())
+        {
+            var server = _connectionMultiplexer.GetServer(endPoint);
+
+            await foreach (var key in  server.KeysAsync(pattern: pattern))
+            {
+                yield return key.ToString();
+            }
+        }
+    }
 }
